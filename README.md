@@ -90,6 +90,7 @@ Feature importance and SHAP interpretation
         |
         v
 Candidate variant and gene prioritization
+```
 
 ## Variant Annotation and Filtering
 
