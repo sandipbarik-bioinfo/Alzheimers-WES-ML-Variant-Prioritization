@@ -90,3 +90,103 @@ Feature importance and SHAP interpretation
         |
         v
 Candidate variant and gene prioritization
+
+## Variant Annotation and Filtering
+
+Following variant calling and quality filtering, the variants were annotated using ANNOVAR to obtain functional, population-frequency, clinical, evolutionary, and in-silico pathogenicity information.
+
+The annotated dataset initially contained 331,161 variants with 139 annotation features. Sequential filtering was then applied to prioritize variants with greater potential biological and clinical relevance.
+
+The filtering strategy included:
+
+- Minor allele frequency (MAF) filtering to prioritize rare variants.
+- Functional-region filtering to retain variants located in biologically relevant regions.
+- Exonic-impact filtering to prioritize coding variants with potential functional consequences.
+- Removal of missing and undefined values from selected pathogenicity-prediction features.
+- Selection of relevant genomic and in-silico pathogenicity features for downstream analysis.
+
+After feature cleaning, 35,032 variants with 32 selected features were retained for downstream machine learning and biological interpretation.
+
+---
+
+## Feature Engineering
+
+The final analytical features included genomic annotations, population-frequency information, evolutionary conservation measures, and established in-silico pathogenicity prediction scores.
+
+Selected predictors included SIFT, PolyPhen-2, CADD, REVEL, FATHMM, MutationTaster, DANN, PROVEAN, MetaSVM, MetaLR, M-CAP, VEST4, ClinPred, GERP++, phyloP, phastCons, and SiPhy.
+
+These features were prepared and structured for supervised machine learning-based variant classification.
+
+---
+
+## Machine Learning
+
+Supervised machine learning models were developed to classify variants according to their clinical significance.
+
+The evaluated algorithms included:
+
+- Logistic Regression
+- Support Vector Machine (SVM)
+- Random Forest
+- XGBoost
+
+The models were evaluated using standard classification performance measures, including ROC-AUC and confusion-matrix-based metrics.
+
+---
+
+## Model Interpretation
+
+Model interpretation was performed to identify the features contributing most strongly to variant classification.
+
+Feature-importance analysis and SHAP-based interpretation were used to examine the contribution of individual genomic and pathogenicity-related features to model predictions.
+
+Representative model evaluation and interpretation plots are provided in the `results/` directory.
+
+---
+
+## High-Level Findings
+
+The integrated workflow identified clinically significant variants and supported downstream candidate-gene prioritization.
+
+A total of **198 genes** carrying pathogenic or likely pathogenic variants were identified. Among these, **26 genes were prioritized as high-confidence candidate genes** using the study's multi-evidence variant prioritization strategy.
+
+Detailed variant-level and gene-level findings are reserved for the associated research manuscript and are not included in this public repository.
+
+---
+
+## Reproducibility
+
+The computational analysis was developed using Python in Google Colab together with established bioinformatics tools and annotation resources.
+
+The notebooks provide the main computational steps used throughout the analysis. Reproduction of the complete workflow may require the appropriate reference genome, ANNOVAR databases, software versions, and publicly available source data.
+
+---
+
+## Data Availability
+
+The WES data used in this project were obtained from the NCBI Sequence Read Archive (SRA) under study accession **PRJNA532465**.
+
+Selected sample-level processed VCF and tabular files are provided in this repository. Large, merged datasets and detailed intermediate and final variant-level result tables are not included in the public repository.
+
+Users seeking to reproduce the analysis should obtain the original source data from the corresponding public repository and comply with its data-use requirements.
+
+---
+
+## Acknowledgements
+
+The author acknowledges the resources and data provided through the Alzheimer's Disease Sequencing Project (ADSP) and the NCBI Sequence Read Archive (SRA), which were essential to this research.
+
+The author also acknowledges the Biotecnika team for providing the opportunity and research environment to undertake this project.
+
+Special thanks to **Dr. Nilofer Sheikh**, Principal Investigator, for her valuable guidance, scientific supervision, and continuous support throughout the project.
+
+---
+
+## Citation
+
+**Manuscript:**  
+*Machine Learning-Based Detection of Pathogenic Variants and Candidate Biomarker Discovery in Alzheimer's Disease Using Whole-Exome Sequencing.*
+
+A formal citation will be added following publication.
+
+---
